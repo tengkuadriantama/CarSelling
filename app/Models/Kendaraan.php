@@ -9,7 +9,7 @@ class Kendaraan extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'tahun_keluaran', 'warna', 'harga','jenis_kendaraan','stok','status','id_kendaraan_motor', 'id_kendaraan_mobil'
+        'tahun_keluaran', 'warna', 'harga','jenis_kendaraan','status','id_kendaraan_motor', 'id_kendaraan_mobil'
     ];
 
     public function idmotor()

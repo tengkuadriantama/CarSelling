@@ -52,4 +52,14 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('/kendaraan/mobil', [KendaraanController::class, 'store']);
     Route::post('/kendaraan/motor', [KendaraanController::class, 'store']);
 
+    Route::get('/cekstokmotor', [KendaraanController::class, 'cekstokmotor']);
+    Route::get('/cekstokmobil', [KendaraanController::class, 'cekstokmobil']);
+    Route::get('/penjualan', [KendaraanController::class, 'penjualan']);
+
+    Route::get('/penjualanmotor', [KendaraanController::class, 'penjualanmotor']);
+    Route::get('/penjualanmobil', [KendaraanController::class, 'penjualanmobil']);
+
+
+
+
 });

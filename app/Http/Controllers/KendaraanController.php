@@ -51,7 +51,6 @@ class KendaraanController extends Controller
                 'warna' => 'required',
                 'harga' => 'required',
                 'jenis_kendaraan' => 'required',
-                'stok' => 'required',
                 'status' => 'required',
 
             ],
@@ -61,7 +60,6 @@ class KendaraanController extends Controller
                 'warna.required' => 'Harap Lengkapi Data!',
                 'harga.required' => 'Harap Lengkapi Data!',
                 'jenis_kendaraan.required' => 'Harap Lengkapi Data!',
-                'stok.required' => 'Harap Lengkapi Data!',
                 'status.required' => 'Harap Lengkapi Data!'
             ]
         );
@@ -80,7 +78,6 @@ class KendaraanController extends Controller
                 'warna' => $request->input('warna'),
                 'harga' => $request->input('harga'),
                 'jenis_kendaraan' => $request->input('jenis_kendaraan'),
-                'stok' => $request->input('stok'),
                 'status' => $request->input('status'),
                 'id_kendaraan_motor' => $request->input('id_kendaraan_motor'), 
                 'id_kendaraan_mobil' => $request->input('id_kendaraan_mobil')
@@ -148,8 +145,6 @@ class KendaraanController extends Controller
     {
         $validator = Validator::make(
             $request->all(),
-
-
             [
                 'tahun_keluaran' => 'required',
                 'warna' => 'required',
@@ -226,5 +221,59 @@ class KendaraanController extends Controller
                 'message' => 'data Gagal Dihapus!',
             ], 400);
         }
+    }
+
+    public function cekstokmotor()
+    {
+        $data = Kendaraan::with('idmotor')->where('jenis_kendaraan','motor')->get(['id', 'id_kendaraan_motor','status']);
+        return response([
+            'success' => true,
+            'message' => 'List Data Motor Beserta Stok!',
+            'data' => $data
+        ], 200);
+        
+    }
+
+    public function cekstokmobil()
+    {
+        $data = Kendaraan::with('idmobil')->where('jenis_kendaraan', 'mobil')->get(['id', 'id_kendaraan_mobil', 'status']);
+        return response([
+            'success' => true,
+            'message' => 'List Data Mobil Beserta Stok!',
+            'data' => $data
+        ], 200);
+    }
+
+    public function penjualan()
+    {
+        $data = Kendaraan::with('idmobil','idmotor')->where('status', 'terjual')->get(['id', 'status', 'id_kendaraan_mobil', 'id_kendaraan_motor']);
+
+        return response([
+            'success' => true,
+            'message' => 'List Data Mobil Dan Motor Yang Terjual!',
+            'data' => $data
+        ], 200);
+    }
+
+    public function penjualanmotor()
+    {
+        $data = Kendaraan::with('idmotor')->where('status', 'terjual',)->where('jenis_kendaraan','motor')->get(['id', 'status', 'id_kendaraan_motor']);
+
+        return response([
+            'success' => true,
+            'message' => 'List Data Motor Yang Terjual!',
+            'data' => $data
+        ], 200);
+    }
+
+    public function penjualanmobil()
+    {
+        $data = Kendaraan::with('idmobil')->where('status', 'terjual',)->where('jenis_kendaraan', 'mobil')->get(['id', 'status', 'id_kendaraan_mobil']);
+
+        return response([
+            'success' => true,
+            'message' => 'List Data Mobil Yang Terjual!',
+            'data' => $data
+        ], 200);
     }
 }

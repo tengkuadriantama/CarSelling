@@ -19,7 +19,6 @@ class CreateKendaraansTable extends Migration
             $table->string('warna');
             $table->string('harga');
             $table->string('jenis_kendaraan');
-            $table->string('stok');
             $table->string('status');
             $table->foreignId('id_kendaraan_motor')->nullable()->constrained('motors');
             $table->foreignId('id_kendaraan_mobil')->nullable()->constrained('mobils');

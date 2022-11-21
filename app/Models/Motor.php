@@ -9,6 +9,6 @@ class Motor extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'mesin', 'suspensi', 'transmisi'
+        'mesin', 'suspensi', 'transmisi','stok'
     ];
 }

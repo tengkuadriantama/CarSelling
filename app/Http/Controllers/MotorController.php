@@ -28,15 +28,18 @@ class MotorController extends Controller
                 'mesin'     => 'required',
                 'suspensi'   => 'required',
                 'transmisi'   => 'required',
-                
+                'stok'   => 'required',
+
 
             ],
             [
                 'mesin.required' => 'Harap Lengkapi Data!',
                 'suspensi.required' => 'Harap Lengkapi Data!',
                 'transmisi.required' => 'Harap Lengkapi Data!',
+                'stok.required' => 'Harap Lengkapi Data!',
             ]
         );
+
 
         if ($validator->fails()) {
 
@@ -51,6 +54,7 @@ class MotorController extends Controller
                 'mesin'     => $request->input('mesin'),
                 'suspensi'   => $request->input('suspensi'),
                 'transmisi'   => $request->input('transmisi'),
+                'stok'   => $request->input('stok'),
              
             ]);
 
@@ -96,6 +100,7 @@ class MotorController extends Controller
                 'mesin'     => 'required',
                 'suspensi'   => 'required',
                 'transmisi'   => 'required',
+                'stok'   => 'required',
 
 
             ],
@@ -103,6 +108,7 @@ class MotorController extends Controller
                 'mesin.required' => 'Harap Lengkapi Data!',
                 'suspensi.required' => 'Harap Lengkapi Data!',
                 'transmisi.required' => 'Harap Lengkapi Data!',
+                'stok.required' => 'Harap Lengkapi Data!',
             ]
         );
 
@@ -119,6 +125,8 @@ class MotorController extends Controller
                 'mesin'     => $request->input('mesin'),
                 'suspensi'   => $request->input('suspensi'),
                 'transmisi'   => $request->input('transmisi'),
+                'stok'   => $request->input('stok'),
+
              
             ]);
 

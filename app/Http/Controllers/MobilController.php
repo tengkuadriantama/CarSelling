@@ -47,6 +47,7 @@ class MobilController extends Controller
                 'mesin'     => 'required',
                 'kapasitas_penumpang'   => 'required',
                 'tipe'   => 'required',
+                'stok'   => 'required',
 
 
             ],
@@ -54,6 +55,7 @@ class MobilController extends Controller
                 'mesin.required' => 'Harap Lengkapi Data!',
                 'kapasitas_penumpang.required' => 'Harap Lengkapi Data!',
                 'tipe.required' => 'Harap Lengkapi Data!',
+                'stok.required' => 'Harap Lengkapi Data!',
             ]
         );
 
@@ -70,6 +72,7 @@ class MobilController extends Controller
                 'mesin'     => $request->input('mesin'),
                 'kapasitas_penumpang'   => $request->input('kapasitas_penumpang'),
                 'tipe'   => $request->input('tipe'),
+                'stok'   => $request->input('stok'),
 
             ]);
 
@@ -140,6 +143,7 @@ class MobilController extends Controller
                 'mesin'     => 'required',
                 'kapasitas_penumpang'   => 'required',
                 'tipe'   => 'required',
+                'stok'   => 'required',
 
 
             ],
@@ -147,6 +151,7 @@ class MobilController extends Controller
                 'mesin.required' => 'Harap Lengkapi Data!',
                 'kapasitas_penumpang.required' => 'Harap Lengkapi Data!',
                 'tipe.required' => 'Harap Lengkapi Data!',
+                'stok.required' => 'Harap Lengkapi Data!',
             ]
         );
 
@@ -163,6 +168,7 @@ class MobilController extends Controller
                 'mesin'     => $request->input('mesin'),
                 'kapasitas_penumpang'   => $request->input('kapasitas_penumpang'),
                 'tipe'   => $request->input('tipe'),
+                'stok'   => $request->input('stok'),
 
             ]);
 
