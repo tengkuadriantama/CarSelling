@@ -7,6 +7,7 @@ use App\Http\Controllers\MotorController;
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\LogoutController;
 use App\Http\Controllers\Api\RegisterController;
+use App\Http\Controllers\KendaraanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +47,9 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::put('/mobil/update', [MobilController::class, 'update']);
     Route::delete('/mobil/{id}', [MobilController::class, 'destroy']);
 
-    
+    Route::resource('kendaraan', KendaraanController::class);
+
+    Route::post('/kendaraan/mobil', [KendaraanController::class, 'store']);
+    Route::post('/kendaraan/motor', [KendaraanController::class, 'store']);
 
 });
