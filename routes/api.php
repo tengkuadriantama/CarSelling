@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MobilController;
+use App\Http\Controllers\MotorController;
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\LogoutController;
 use App\Http\Controllers\Api\RegisterController;
@@ -31,4 +33,19 @@ Route::group(['middleware' => ['auth:api']], function () {
     });
 
     Route::post('/logout', LogoutController::class)->name('logout');
+
+    Route::get('/motor', [MotorController::class, 'index']);
+    Route::post('/motor/store', [MotorController::class, 'store']);
+    Route::get('/motor/{id}', [MotorController::class, 'show']);
+    Route::put('/motor/update', [MotorController::class, 'update']);
+    Route::delete('/motor/{id}', [MotorController::class, 'delete']);
+
+    Route::get('/mobil', [MobilController::class, 'index']);
+    Route::post('/mobil/store', [MobilController::class, 'store']);
+    Route::get('/mobil/{id}', [MobilController::class, 'show']);
+    Route::put('/mobil/update', [MobilController::class, 'update']);
+    Route::delete('/mobil/{id}', [MobilController::class, 'destroy']);
+
+    
+
 });
