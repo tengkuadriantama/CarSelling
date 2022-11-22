@@ -164,7 +164,7 @@ class MobilController extends Controller
             ], 401);
         } else {
 
-            $data = Mobil::find($request->input('id'))->update([
+            $data = Mobil::find($request->input('_id'))->update([
                 'mesin'     => $request->input('mesin'),
                 'kapasitas_penumpang'   => $request->input('kapasitas_penumpang'),
                 'tipe'   => $request->input('tipe'),

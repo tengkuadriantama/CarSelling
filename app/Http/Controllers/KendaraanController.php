@@ -141,18 +141,12 @@ class KendaraanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
         $validator = Validator::make(
             $request->all(),
             [
-                'tahun_keluaran' => 'required',
-                'warna' => 'required',
-                'harga' => 'required',
-                'jenis_kendaraan' => 'required',
-                'stok' => 'required',
-                'status' => 'required',
-
+                
             ],
             [
 
@@ -174,7 +168,7 @@ class KendaraanController extends Controller
             ], 401);
         } else {
 
-            $data = Kendaraan::find($request->input('id'))->update([
+            $data = Kendaraan::find($id)->update([
                 'tahun_keluaran' => $request->input('tahun_keluaran'),
                 'warna' => $request->input('warna'),
                 'harga' => $request->input('harga'),
@@ -225,7 +219,7 @@ class KendaraanController extends Controller
 
     public function cekstokmotor()
     {
-        $data = Kendaraan::with('idmotor')->where('jenis_kendaraan','motor')->get(['id', 'id_kendaraan_motor','status']);
+        $data = Kendaraan::with('idmotor')->where('jenis_kendaraan','motor')->where('status','ready')->latest()->get(['id', 'id_kendaraan_motor','status']);
         return response([
             'success' => true,
             'message' => 'List Data Motor Beserta Stok!',
@@ -236,7 +230,7 @@ class KendaraanController extends Controller
 
     public function cekstokmobil()
     {
-        $data = Kendaraan::with('idmobil')->where('jenis_kendaraan', 'mobil')->get(['id', 'id_kendaraan_mobil', 'status']);
+        $data = Kendaraan::with('idmobil')->where('jenis_kendaraan', 'mobil')->where('status', 'ready')->latest()->get(['id', 'id_kendaraan_mobil', 'status']);
         return response([
             'success' => true,
             'message' => 'List Data Mobil Beserta Stok!',
@@ -246,7 +240,7 @@ class KendaraanController extends Controller
 
     public function penjualan()
     {
-        $data = Kendaraan::with('idmobil','idmotor')->where('status', 'terjual')->get(['id', 'status', 'id_kendaraan_mobil', 'id_kendaraan_motor']);
+        $data = Kendaraan::with('idmobil','idmotor')->where('status', 'terjual')->latest()->get(['id', 'status', 'id_kendaraan_mobil', 'id_kendaraan_motor']);
 
         return response([
             'success' => true,
@@ -257,7 +251,7 @@ class KendaraanController extends Controller
 
     public function penjualanmotor()
     {
-        $data = Kendaraan::with('idmotor')->where('status', 'terjual',)->where('jenis_kendaraan','motor')->get(['id', 'status', 'id_kendaraan_motor']);
+        $data = Kendaraan::with('idmotor')->where('status', 'terjual',)->latest()->where('jenis_kendaraan','motor')->get(['id', 'status', 'id_kendaraan_motor']);
 
         return response([
             'success' => true,
@@ -268,7 +262,7 @@ class KendaraanController extends Controller
 
     public function penjualanmobil()
     {
-        $data = Kendaraan::with('idmobil')->where('status', 'terjual',)->where('jenis_kendaraan', 'mobil')->get(['id', 'status', 'id_kendaraan_mobil']);
+        $data = Kendaraan::with('idmobil')->where('status', 'terjual',)->where('jenis_kendaraan', 'mobil')->latest()->get(['id', 'status', 'id_kendaraan_mobil']);
 
         return response([
             'success' => true,

@@ -121,7 +121,7 @@ class MotorController extends Controller
             ], 401);
         } else {
 
-            $data = Motor::find($request->input('id'))->update([
+            $data = Motor::find($request->input('_id'))->update([
                 'mesin'     => $request->input('mesin'),
                 'suspensi'   => $request->input('suspensi'),
                 'transmisi'   => $request->input('transmisi'),
@@ -129,6 +129,7 @@ class MotorController extends Controller
 
              
             ]);
+            
 
             if ($data) {
                 return response()->json([
